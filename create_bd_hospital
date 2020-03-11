@@ -1,0 +1,27 @@
+create database hospital;
+
+create table estado_civil
+(
+	cod_estado_civil int primary key auto_increment,
+    nm_estado_civil varchar(100) 
+);
+
+insert into estado_civil (nm_estado_civil)
+values 
+('Solteiro'),
+('Casado'),
+('Viúvo'),
+('Separado'),
+('Divorciado');
+
+create table paciente
+(
+	cod_paciente 		int primary key auto_increment,
+    nm_paciente  		varchar(300),
+    dt_nascimento		datetime,
+    sexo				char(1),
+    cod_estado_civil 	int,
+    nm_rg 				varchar(20),
+    nm_telefone			varchar(20),
+    foreign key fk_cod_estado_civil (cod_estado_civil) references estado_civil(cod_estado_civil)
+);
