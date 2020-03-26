@@ -1,0 +1,35 @@
+/*create database tolosa;*/
+
+create table tbd_departamento
+(
+	cod_depto int primary key identity,
+    desc_depto varchar(100)
+);
+
+create table tbd_projeto
+(
+	cod_proj int primary key identity,
+    desc_proj varchar(100)
+);
+
+create table tbd_funcionario
+(
+	cod_func int primary key identity,
+    nome_func varchar(100),
+    nasc_func datetime,
+    sexo_func char(1),
+    salario_func decimal(12,2),
+    cod_depto int,
+    constraint fk_cod_depto foreign key (cod_depto) references tbd_departamento(cod_depto) 
+);
+
+create table tbd_func_proj
+(
+	cod_func int ,
+    cod_proj int ,
+    inicio_proj datetime null,
+    fim_proj datetime null,
+    primary key (cod_func, cod_proj ),
+    constraint fk_cod_func foreign key (cod_func) references tbd_funcionario(cod_func),
+    constraint fk_cod_proj foreign key (cod_proj) references tbd_projeto(cod_proj)
+);
